@@ -5,8 +5,8 @@
  * @format
  */
 
-import React from 'react';
 import type {PropsWithChildren} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -77,7 +77,7 @@ function App(): React.JSX.Element {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
+            Edit: <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
           </Section>
           <Section title="See Your Changes">
