@@ -10,6 +10,7 @@ import palette from 'core/styles/palette.ts';
 import {StyleSheet} from 'react-native';
 import Text from 'core/components/Text';
 import Icon from 'core/components/Icon';
+import Home from 'features/home/screens/Home.tsx';
 
 export type BottomTabNavigationParam = {
   [BottomTabRoutes.HOME_NAVIGATION]: undefined;
@@ -60,7 +61,7 @@ const BottomTabsNavigation = () => {
           ),
         }}
         name={BottomTabRoutes.HOME_NAVIGATION}
-        component={() => <Text>Home</Text>}
+        component={Home}
       />
       <Tab.Screen
         options={{
