@@ -1,17 +1,17 @@
 import {deleteApi, get, path, post} from 'core/helpers/axios';
 
-interface BookID {
+export interface BookID {
   id: string;
 }
 
-interface AddBook {
+export interface AddBook {
   title: string;
   author: string;
   genre: string;
   yearPublished: number;
 }
 
-interface UpdateBook extends AddBook, BookID {}
+export interface UpdateBook extends AddBook, BookID {}
 
 export async function getBooks(body?: BookID): Promise<any> {
   return get<any>(`books${body ? `/${body.id}` : ''}`).then(res => res.data);
