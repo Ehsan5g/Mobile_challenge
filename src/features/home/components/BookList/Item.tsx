@@ -24,17 +24,19 @@ const Item = (props: Props) => {
       </Text>
       <View style={styles.buttonContainer}>
         <Button
+          style={styles.button}
           onPress={onEdit}
           size={'l'}
           color={'white'}
-          iconLeft={'pencil'}
+          iconRight={'pencil'}
           title={'Edit'}
         />
         <Button
+          style={styles.button}
           onPress={onDelete}
           size={'l'}
           color={'white'}
-          iconLeft={'delete'}
+          iconRight={'delete'}
           backgroundColor={'error'}
           title={'Delete'}
         />
@@ -63,6 +65,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 12,
+  },
+  button: {
+    flex: 1,
   },
 });
 export default Item;

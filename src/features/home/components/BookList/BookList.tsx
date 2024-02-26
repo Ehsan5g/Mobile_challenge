@@ -5,10 +5,11 @@ import {Book} from 'features/home/type/book.ts';
 
 type Props = Omit<FlatListProps<Book>, 'renderItem'> & {
   onDelete: (book: Book) => void;
+  onEdit: (book: Book) => void;
 };
 
 const BookList = (props: Props) => {
-  const {data, onDelete, ...res} = props;
+  const {data, onEdit, onDelete, ...res} = props;
 
   const renderItem = useCallback(
     ({item}: {item: Book}) => (
@@ -16,7 +17,9 @@ const BookList = (props: Props) => {
         onDelete={() => {
           onDelete(item);
         }}
-        onEdit={() => {}}
+        onEdit={() => {
+          onEdit(item);
+        }}
         item={item}
       />
     ),
