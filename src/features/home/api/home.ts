@@ -1,4 +1,5 @@
 import {deleteApi, get, path, post} from 'core/helpers/axios';
+import {Book} from 'features/home/type/book.ts';
 
 export interface BookID {
   id: string;
@@ -13,8 +14,8 @@ export interface AddBook {
 
 export interface UpdateBook extends AddBook, BookID {}
 
-export async function getBooks(body?: BookID): Promise<any> {
-  return get<any>(`books${body ? `/${body.id}` : ''}`).then(res => res.data);
+export async function getBooks(body?: BookID): Promise<Book[]> {
+  return get<Book[]>(`books${body ? `/${body.id}` : ''}`).then(res => res.data);
 }
 
 export async function addBook(body: AddBook): Promise<any> {
