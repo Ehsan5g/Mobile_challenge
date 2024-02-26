@@ -12,7 +12,9 @@ export interface AddBook {
   yearPublished: number;
 }
 
-export interface UpdateBook extends AddBook, BookID {}
+export interface UpdateBook extends AddBook, BookID {
+  checkedOut: boolean;
+}
 
 export async function getBooks(body?: BookID): Promise<Book[]> {
   return get<Book[]>(`books${body ? `/${body.id}` : ''}`).then(res => res.data);
@@ -32,5 +34,6 @@ export async function updateBook(body: UpdateBook): Promise<any> {
     author: body.author,
     yearPublished: body.yearPublished,
     genre: body.genre,
+    checkedOut: body.checkedOut,
   }).then(res => res.data);
 }
