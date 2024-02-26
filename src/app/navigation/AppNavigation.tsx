@@ -2,10 +2,10 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {AppRoutes} from './routes';
 import {screenOption} from 'core/config/navigation';
-import BottomTabsNavigation from 'app/navigation/BottomTabsNavigation.tsx';
+import Home from 'features/home/screens/Home.tsx';
 
 export type AppNavigatorParam = {
-  [AppRoutes.BOTTOM_TAB_NAVIGATION]: undefined;
+  [AppRoutes.Home_NAVIGATION]: undefined;
 };
 const Stack = createStackNavigator<AppNavigatorParam>();
 
@@ -13,11 +13,8 @@ const AppNavigation = (): JSX.Element => {
   return (
     <Stack.Navigator
       screenOptions={screenOption}
-      initialRouteName={AppRoutes.BOTTOM_TAB_NAVIGATION}>
-      <Stack.Screen
-        name={AppRoutes.BOTTOM_TAB_NAVIGATION}
-        component={BottomTabsNavigation}
-      />
+      initialRouteName={AppRoutes.Home_NAVIGATION}>
+      <Stack.Screen name={AppRoutes.Home_NAVIGATION} component={Home} />
     </Stack.Navigator>
   );
 };
