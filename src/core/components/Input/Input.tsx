@@ -56,7 +56,6 @@ const Input = (props: InputProps): JSX.Element => {
         ]}
         underlineColorAndroid={'transparent'}
         placeholder={placeholder}
-        textAlign={'right'}
         {...rest}
       />
       {showError && (
