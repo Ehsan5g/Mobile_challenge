@@ -78,7 +78,6 @@ const Button = (prop: ButtonProps): JSX.Element => {
 
 const styles = StyleSheet.create({
   button: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
