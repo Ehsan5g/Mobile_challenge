@@ -1,3 +1,4 @@
 export enum AppRoutes {
-  Home_NAVIGATION = 'homeNavigation',
+  Home = 'home',
+  CREATE_BOOK = 'createBook',
 }
