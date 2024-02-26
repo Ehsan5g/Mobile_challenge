@@ -59,7 +59,7 @@ const Input = (props: InputProps): JSX.Element => {
         {...rest}
       />
       {showError && (
-        <Text color={'error'} size={errorSize ?? 's'}>
+        <Text style={styles.errorText} color={'error'} size={errorSize ?? 's'}>
           {error ?? ''}
         </Text>
       )}
@@ -72,6 +72,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 10,
     borderWidth: 1,
+  },
+  errorText: {
+    marginBottom: 8,
   },
 });
 
