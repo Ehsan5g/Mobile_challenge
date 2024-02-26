@@ -11,7 +11,7 @@ export interface AddBookValues extends Omit<AddBook, 'yearPublished'> {
   yearPublished: string;
 }
 
-export function useAddForm(): UseAddForm {
+export function useAddForm(value?: AddBookValues): UseAddForm {
   const validationSchema: Yup.ObjectSchema<AddBookValues> = useMemo(
     () =>
       Yup.object().shape({
@@ -23,12 +23,15 @@ export function useAddForm(): UseAddForm {
     [],
   );
 
-  const initialValues: AddBookValues = {
-    title: '',
-    author: '',
-    genre: '',
-    yearPublished: '',
-  };
+  const initialValues: AddBookValues = useMemo(
+    () => ({
+      title: value ? value.title : '',
+      author: value ? value.author : '',
+      genre: value ? value.genre : '',
+      yearPublished: value ? value.yearPublished : '',
+    }),
+    [value],
+  );
 
   return {validationSchema, initialValues};
 }
