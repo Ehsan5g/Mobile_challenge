@@ -1,3 +1,3 @@
 export enum AppRoutes {
-  BOTTOM_TAB_NAVIGATION = 'bottomTabNavigation',
+  Home_NAVIGATION = 'homeNavigation',
 }
