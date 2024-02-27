@@ -31,12 +31,7 @@ const Home = () => {
   const [message, setMessage] = useState<Book | undefined>(undefined);
   const [search, setSearch] = useState('');
 
-  const {
-    data,
-    isPending: getLoading,
-    refetch,
-    isRefetching,
-  } = useGetBook({id: undefined});
+  const {data, isPending: getLoading, refetch, isRefetching} = useGetBook();
   const {mutateAsync: deleteBook, isPending: deleteLoading} = useDeleteBook();
 
   const filteredData = useMemo(() => {
@@ -92,7 +87,6 @@ const Home = () => {
         </View>
       </View>
       <BookList
-        onDelete={onDelete}
         refreshControl={
           <RefreshControl
             colors={[palette.primary, pallet.secondary]}
@@ -100,6 +94,10 @@ const Home = () => {
             onRefresh={() => refetch()}
           />
         }
+        onPress={bookId => {
+          navigate(AppRoutes.BOOK, {bookId});
+        }}
+        onDelete={onDelete}
         onEdit={book => {
           navigate(AppRoutes.CREATE_BOOK, {
             type: TypeCreateBook.EDITE,
@@ -141,6 +139,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: palette.border,
   },
   inputContainer: {
     borderRadius: 12,
