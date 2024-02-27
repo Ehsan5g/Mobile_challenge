@@ -16,8 +16,12 @@ export interface UpdateBook extends AddBook, BookID {
   checkedOut: boolean;
 }
 
-export async function getBooks(body?: BookID): Promise<Book[]> {
-  return get<Book[]>(`books${body ? `/${body.id}` : ''}`).then(res => res.data);
+export async function getBooks(): Promise<Book[]> {
+  return get<Book[]>(`books`).then(res => res.data);
+}
+
+export async function getBook(body: string): Promise<Book> {
+  return get<Book>(`books/${body}`).then(res => res.data);
 }
 
 export async function addBook(body: AddBook): Promise<any> {
