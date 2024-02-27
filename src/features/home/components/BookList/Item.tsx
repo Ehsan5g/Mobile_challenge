@@ -5,13 +5,24 @@ import {Book} from 'features/home/type/book.ts';
 import {shadow} from 'core/styles/styles.tsx';
 import palette from 'core/styles/palette.ts';
 import Button from 'core/components/Button';
+import UnStyledButton from 'core/components/UnStyledButton';
 
-type Props = {item: Book; onEdit: () => void; onDelete: () => void};
+type Props = {
+  item: Book;
+  onEdit: () => void;
+  onDelete: () => void;
+  onPress?: () => void;
+};
 const {width} = Dimensions.get('window');
 const Item = (props: Props) => {
-  const {item, onDelete, onEdit} = props;
+  const {item, onDelete, onEdit, onPress} = props;
   return (
-    <View style={[styles.bookItem, shadow]}>
+    <UnStyledButton
+      disabled={onPress == undefined}
+      onPress={() => {
+        onPress?.();
+      }}
+      style={[styles.bookItem, shadow]}>
       <Text size={'xl'} style={styles.bookTitle} color={'primary'}>
         {item.title}
       </Text>
@@ -41,7 +52,7 @@ const Item = (props: Props) => {
           title={'Delete'}
         />
       </View>
-    </View>
+    </UnStyledButton>
   );
 };
 
