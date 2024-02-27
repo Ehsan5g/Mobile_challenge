@@ -20,6 +20,7 @@ import {
 import {AppRoutes} from 'app/navigation/routes.ts';
 import {useUpdateBook} from 'features/home/hooks/useUpdateBook.ts';
 import CheckoutRadio from 'features/home/components/CheckoutRadio';
+import Header from 'core/components/Header';
 import ScrollView = Animated.ScrollView;
 
 type Props = {};
@@ -82,103 +83,113 @@ const CreateBook = () => {
   );
 
   return (
-    <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <Formik
-          initialValues={initialValues}
-          onSubmit={onSubmit}
-          validationSchema={validationSchema}>
-          {({
-            values,
-            handleSubmit,
-            touched,
-            handleBlur,
-            handleChange,
-            errors,
-            isValid,
-          }) => {
-            return (
-              <>
-                <Text>title :</Text>
-                <Input
-                  style={styles.input}
-                  onChangeText={handleChange('title')}
-                  value={values.title}
-                  error={
-                    touched.title && errors.title ? errors.title : undefined
-                  }
-                  onBlur={handleBlur('title')}
-                  placeholder={'test'}
-                />
+    <>
+      <Header
+        onBack={goBack}
+        title={params.type == TypeCreateBook.ADD ? 'Add Book' : 'Edit Book'}
+      />
+      <View style={styles.container}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}>
+            {({
+              values,
+              handleSubmit,
+              touched,
+              handleBlur,
+              handleChange,
+              errors,
+              isValid,
+            }) => {
+              return (
+                <>
+                  <Text>title :</Text>
+                  <Input
+                    style={styles.input}
+                    onChangeText={handleChange('title')}
+                    value={values.title}
+                    error={
+                      touched.title && errors.title ? errors.title : undefined
+                    }
+                    onBlur={handleBlur('title')}
+                    placeholder={'test'}
+                  />
 
-                <Text>Author :</Text>
-                <Input
-                  style={styles.input}
-                  placeholder={'test'}
-                  onChangeText={handleChange('author')}
-                  value={values.author}
-                  error={
-                    touched.author && errors.author ? errors.author : undefined
-                  }
-                  onBlur={handleBlur('author')}
-                />
+                  <Text>Author :</Text>
+                  <Input
+                    style={styles.input}
+                    placeholder={'test'}
+                    onChangeText={handleChange('author')}
+                    value={values.author}
+                    error={
+                      touched.author && errors.author
+                        ? errors.author
+                        : undefined
+                    }
+                    onBlur={handleBlur('author')}
+                  />
 
-                <Text>genre :</Text>
-                <Input
-                  style={styles.input}
-                  placeholder={'test'}
-                  onChangeText={handleChange('genre')}
-                  value={values.genre}
-                  error={
-                    touched.genre && errors.genre ? errors.genre : undefined
-                  }
-                  onBlur={handleBlur('genre')}
-                />
+                  <Text>genre :</Text>
+                  <Input
+                    style={styles.input}
+                    placeholder={'test'}
+                    onChangeText={handleChange('genre')}
+                    value={values.genre}
+                    error={
+                      touched.genre && errors.genre ? errors.genre : undefined
+                    }
+                    onBlur={handleBlur('genre')}
+                  />
 
-                <Text>year published :</Text>
-                <Input
-                  keyboardType={'numeric'}
-                  style={styles.input}
-                  placeholder={'test'}
-                  onChangeText={handleChange('yearPublished')}
-                  value={values.yearPublished}
-                  error={
-                    touched.yearPublished && errors.yearPublished
-                      ? errors.yearPublished
-                      : touched.yearPublished && yearError
-                      ? yearError
-                      : undefined
-                  }
-                  onBlur={handleBlur('yearPublished')}
-                />
+                  <Text>year published :</Text>
+                  <Input
+                    keyboardType={'numeric'}
+                    style={styles.input}
+                    placeholder={'test'}
+                    onChangeText={handleChange('yearPublished')}
+                    value={values.yearPublished}
+                    error={
+                      touched.yearPublished && errors.yearPublished
+                        ? errors.yearPublished
+                        : touched.yearPublished && yearError
+                        ? yearError
+                        : undefined
+                    }
+                    onBlur={handleBlur('yearPublished')}
+                  />
 
-                {params.type == TypeCreateBook.EDITE && (
-                  <>
-                    <Text>Checkout :</Text>
-                    <CheckoutRadio onChange={setCheckout} value={checkout} />
-                  </>
-                )}
+                  {params.type == TypeCreateBook.EDITE && (
+                    <>
+                      <Text>Checkout :</Text>
+                      <CheckoutRadio onChange={setCheckout} value={checkout} />
+                    </>
+                  )}
 
-                <Button
-                  disabled={!isValid}
-                  loading={addLoading || updateLoading}
-                  color={'white'}
-                  onPress={() => {
-                    handleSubmit();
-                  }}
-                  title={
-                    params.type == TypeCreateBook.ADD ? 'Add Book' : 'Edit Book'
-                  }
-                  iconRight={
-                    params.type == TypeCreateBook.ADD ? 'plus' : 'pencil'
-                  }
-                />
-              </>
-            );
-          }}
-        </Formik>
-      </ScrollView>
-    </View>
+                  <Button
+                    disabled={!isValid}
+                    loading={addLoading || updateLoading}
+                    color={'white'}
+                    onPress={() => {
+                      handleSubmit();
+                    }}
+                    title={
+                      params.type == TypeCreateBook.ADD
+                        ? 'Add Book'
+                        : 'Edit Book'
+                    }
+                    iconRight={
+                      params.type == TypeCreateBook.ADD ? 'plus' : 'pencil'
+                    }
+                  />
+                </>
+              );
+            }}
+          </Formik>
+        </ScrollView>
+      </View>
+    </>
   );
 };
 
@@ -187,6 +198,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: palette.backgroundColor,
     paddingHorizontal: 12,
+    paddingTop: 8,
   },
   input: {
     marginBottom: 4,
