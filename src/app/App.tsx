@@ -12,6 +12,7 @@ import queryClient from 'core/config/reactQuery.ts';
 import {QueryClientProvider} from '@tanstack/react-query';
 import {NavigationContainer} from '@react-navigation/native';
 import palette from 'core/styles/palette.ts';
+import ToastProvider from 'core/provider/ToastProvider.tsx';
 
 const App = (): React.JSX.Element => {
   return (
@@ -24,6 +25,7 @@ const App = (): React.JSX.Element => {
             backgroundColor={palette.backgroundColor}
           />
           <AppNavigation />
+          <ToastProvider />
         </QueryClientProvider>
       </NavigationContainer>
     </SafeAreaView>
