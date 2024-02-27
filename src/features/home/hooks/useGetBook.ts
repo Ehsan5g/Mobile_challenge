@@ -6,9 +6,9 @@ interface GetBookProps {
   id?: string;
 }
 
-export function useGetBook({id}: GetBookProps): UseQueryResult<Book[], Error> {
+export function useGetBook(): UseQueryResult<Book[], Error> {
   return useQuery({
-    queryKey: ['book', id],
-    queryFn: () => getBooks(id ? {id: id} : undefined),
+    queryKey: ['book',],
+    queryFn: () => getBooks(),
   });
 }
